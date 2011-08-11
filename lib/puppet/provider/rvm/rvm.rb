@@ -1,3 +1,6 @@
+### Used from blt04
+### https://github.com/blt04/puppet-rvm/
+
 Puppet::Type.type(:rvm).provide(:rvm) do
   desc "Ruby RVM support."
 
@@ -22,7 +25,7 @@ Puppet::Type.type(:rvm).provide(:rvm) do
 
   end
 
-  def default_use
+  def default
     begin
       rvmcmd("list", "default", "string").any? do |line|
         line =~ Regexp.new(Regexp.escape(resource[:name]))
@@ -32,7 +35,7 @@ Puppet::Type.type(:rvm).provide(:rvm) do
     end
   end
 
-  def default_use=(value)
+  def default=(value)
     rvmcmd "--default", "use", resource[:name] if value
   end
 end

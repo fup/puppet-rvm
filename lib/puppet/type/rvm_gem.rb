@@ -1,3 +1,6 @@
+### Used from blt04
+### https://github.com/blt04/puppet-rvm/
+
 Puppet::Type.newtype(:rvm_gem) do
   @doc = "Ruby Gem support using RVM."
 

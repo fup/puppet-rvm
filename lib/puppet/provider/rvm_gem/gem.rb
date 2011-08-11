@@ -1,3 +1,6 @@
+### Used from blt04
+### https://github.com/blt04/puppet-rvm/
+
 require 'puppet/provider/package'
 require 'uri'
 
