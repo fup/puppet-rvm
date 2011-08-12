@@ -23,7 +23,7 @@ define rvm::define::gem(
     $gem = {
       'install'   => "rvm ${ruby_version} gem install ${name} -v ${gem_version} --no-ri --no-rdoc",
       'uninstall' => "rvm ${ruby_version} gem uninstall ${name} -v ${gem_version}",
-      'lookup'    => "rvm gem list | grep ${name} (${gem_version})",
+      'lookup'    => "rvm gem list | grep ${name} | grep ${gem_version}",
     }
   }
 
