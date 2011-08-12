@@ -6,6 +6,9 @@ class rvm {
   
   class { 'rvm::packages':
     require => Anchor['rvm::begin'],
-    before  => Anchor['rvm::end'],
+    before  => Class['rvm::config'],
+  }
+  class { 'rvm::config': 
+    before => Anchor['rvm::end'],
   }
 }
