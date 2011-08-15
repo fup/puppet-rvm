@@ -3,7 +3,7 @@ class rvm::packages {
   anchor { 'rvm::packages::end': }
   
   case $::operatingsystem {
-    rhel,oel,centos,fedora: {
+    redhat,oel,centos,fedora: {
       class { 'rvm::packages::redhat':
         require => Anchor['rvm::packages::begin'],
         before  => Class['rvm::packages::common'],
