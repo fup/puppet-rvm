@@ -1,16 +1,28 @@
-# Class: 
-#
+# Defintion: rvm::define::gem
+# 
 # Description
+#  This custom definition will install a gem to a specific RVM version if the default
+#  system ruby is not the desired installation with gem or the gem package provider.
 #
 # Parameters:
-#   
+#  - $ensure: (present|absent) - ensures the package is either installed or not.
+#  - $ruby_version: the specific ruby version via RVM that a gem should be installed to.
+#  - $gem_version: the specific version of a gem that you wish to be installed.
+#
 # Actions:
+#  - Installs a gem to a specific Ruby set.
 #
 # Requires:
+#  - Class[rvm]
 #
 # Sample Usage:
+#  Install Gem to specific RVM version
+#   rvm::define::gem { 'puppet':
+#     ensure       => 'present',
+#     gem_version  => '2.7.2',
+#     ruby_version => 'ree',
+#   }
 #
-
 define rvm::define::gem(
   $ensure = 'present',
   $ruby_version,

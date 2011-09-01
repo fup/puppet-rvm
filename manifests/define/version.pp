@@ -1,16 +1,32 @@
-# Class: 
-#
+# Defintion: rvm::define::version
+# 
 # Description
+#  This custom definition will install a specific RVM Ruby version.
 #
 # Parameters:
-#   
+#  - $ensure: (present|absent) - ensures the package is either installed or not.
+#  - $system: sets whether an installed RVM version will be the system ruby version.
+#
 # Actions:
+#  - Installs RVM ruby version and optionally sets as the system ruby
 #
 # Requires:
+#  - Class[rvm]
 #
 # Sample Usage:
+#  Install Ruby 1.8.7 and set as the default system ruby.
 #
-
+#   rvm::define::version { 'ruby-1.8.7':
+#     ensure => 'present',
+#     system => 'true',
+#   }
+#   
+#  Install Ruby Enterprise
+#
+#   rvm::define::version { 'ree':
+#     ensure => 'present',
+#   }
+#
 define rvm::define::version (
   $ensure = 'present',
   $system = 'false'

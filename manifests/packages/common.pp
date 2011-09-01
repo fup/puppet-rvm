@@ -1,16 +1,21 @@
-# Class: 
+# Class: rvm::package::common
 #
 # Description
+#   This class is designed to install rvm from a script online.
 #
 # Parameters:
-#   
+#  This class takes no parameters
+#
 # Actions:
+#  This class is designed to install RVM. 
 #
 # Requires:
+#   - wget
+#   - tar
 #
 # Sample Usage:
+#   This method should not be called directly.
 #
-
 class rvm::packages::common {
   Exec {
     path => '/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/rvm/bin',
