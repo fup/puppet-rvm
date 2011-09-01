@@ -1,3 +1,16 @@
+# Class: 
+#
+# Description
+#
+# Parameters:
+#   
+# Actions:
+#
+# Requires:
+#
+# Sample Usage:
+#
+
 class rvm::packages::common {
   Exec {
     path => '/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/rvm/bin',

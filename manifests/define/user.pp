@@ -1,3 +1,16 @@
+# Class: 
+#
+# Description
+#
+# Parameters:
+#   
+# Actions:
+#
+# Requires:
+#
+# Sample Usage:
+#
+
 define rvm::define::user() {
   exec { "/usr/sbin/usermod -a -G rvm ${name}":
       path    => '/bin:/sbin:/usr/bin:/usr/sbin',

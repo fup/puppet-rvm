@@ -1,3 +1,16 @@
+# Class: 
+#
+# Description
+#
+# Parameters:
+#   
+# Actions:
+#
+# Requires:
+#
+# Sample Usage:
+#
+
 class rvm::packages::redhat {
   $package_list = ['gcc-c++', 'patch', 'readline', 'readline-devel', 'zlib', 
                    'zlib-devel', 'libyaml-devel', 'libffi-devel', 

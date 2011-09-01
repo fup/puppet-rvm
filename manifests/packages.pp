@@ -1,3 +1,16 @@
+# Class: 
+#
+# Description
+#
+# Parameters:
+#   
+# Actions:
+#
+# Requires:
+#
+# Sample Usage:
+#
+
 class rvm::packages {
   anchor { 'rvm::packages::begin': }
   anchor { 'rvm::packages::end': }
