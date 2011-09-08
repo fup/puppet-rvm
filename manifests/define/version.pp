@@ -23,9 +23,14 @@
 #   
 #  Install Ruby Enterprise
 #
-#   rvm::define::version { 'ree':
+#   rvm::define::version { 'ree-1.8.7-2011.03':
 #     ensure => 'present',
 #   }
+#
+#   Note: You must define the full version when defining a path. If you
+#   happen to simply define version as 'ree', RVM will install the 
+#   appropriate ruby, but Puppet will attempt to install the Ruby Version
+#   on each puppet run. You've been warned. 
 #
 define rvm::define::version (
   $ensure = 'present',
