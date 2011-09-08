@@ -26,7 +26,8 @@
 define rvm::define::gem(
   $ensure = 'present',
   $ruby_version,
-  $gem_version = ''
+  $gem_version = '',
+  $source = ''
 ) {  
   ## Set sensible defaults for Exec resource
   Exec {
@@ -39,10 +40,19 @@ define rvm::define::gem(
   
   # Setup proper install/uninstall commands based on gem version.
   if $gem_version == '' {
-    $gem = {
-      'install'   => "rvm ${ruby_version} gem install ${name} --no-ri --no-rdoc",
-      'uninstall' => "rvm ${ruby_version} gem uninstall ${name}",
-      'lookup'    => "rvm gem list | grep ${name}",
+    if $source != '' {
+      $gem = {
+        'install'   => "rvm ${ruby_version} gem install ${name} --no-ri --no-rdoc ${source}",
+        'uninstall' => "rvm ${ruby_version} gem uninstall ${name}",
+        'lookup'    => "rvm gem list | grep ${name}",
+      }
+    }
+    else {
+      $gem = {
+        'install'   => "rvm ${ruby_version} gem install ${name} --no-ri --no-rdoc",
+        'uninstall' => "rvm ${ruby_version} gem uninstall ${name}",
+        'lookup'    => "rvm gem list | grep ${name}",
+      }
     }
   } else {
     $gem = {
@@ -51,7 +61,7 @@ define rvm::define::gem(
       'lookup'    => "rvm gem list | grep ${name} | grep ${gem_version}",
     }
   }
-
+  
   ## Begin Logic
   if $ensure == 'present' {
     exec { "rvm-gem-install-${name}-${ruby_version}":
