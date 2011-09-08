@@ -29,7 +29,7 @@ class rvm::packages::common {
   exec { 'install-rvm':
     command => "bash /tmp/rvm",
     creates => '/usr/local/rvm/bin/rvm',
-    require => Exec['download-rvm-install'],
+    require => [ Exec['download-rvm-install'], Package['git'] ],
   }
   file { '/tmp/rvm':
     ensure  => absent,
