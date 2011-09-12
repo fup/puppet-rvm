@@ -21,18 +21,18 @@ class rvm::packages::common {
     path => '/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/rvm/bin',
   }
   
-  exec { 'download-rvm-install':
-    command => 'wget -O /tmp/rvm https://rvm.beginrescueend.com/install/rvm',
-    creates => '/tmp/rvm',
-    unless  => 'which rvm',
-  }
-  exec { 'install-rvm':
-    command => "bash /tmp/rvm",
-    creates => '/usr/local/rvm/bin/rvm',
-    require => [ Exec['download-rvm-install'], Package['git'] ],
-  }
-  file { '/tmp/rvm':
-    ensure  => absent,
-    require => Exec['install-rvm'],
-  }
+  #exec { 'download-rvm-install':
+  #  command => 'wget -O /tmp/rvm https://rvm.beginrescueend.com/install/rvm',
+  #  creates => '/tmp/rvm',
+  #  unless  => 'which rvm',
+  #}
+  #exec { 'install-rvm':
+  #  command => "bash /tmp/rvm",
+  #  creates => '/usr/local/rvm/bin/rvm',
+  #  require => [ Exec['download-rvm-install'], Package['git'] ],
+  #}
+  #file { '/tmp/rvm':
+  #  ensure  => absent,
+  #  require => Exec['install-rvm'],
+  #}
 }
