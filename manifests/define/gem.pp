@@ -31,11 +31,11 @@ define rvm::define::gem(
 ) {  
   ## Set sensible defaults for Exec resource
   Exec {
-    path    => '/usr/local/rvm/bin:/bin:/sbin:/usr/bin:/usr/sbin',
+    path    => '/usr/lib/rvm/bin:/bin:/sbin:/usr/bin:/usr/sbin',
   }
   
   # Local Parameters
-  $rvm_path = '/usr/local/rvm'
+  $rvm_path = '/usr/lib/rvm'
   $rvm_ruby = "${rvm_path}/rubies"
   
   # Setup proper install/uninstall commands based on gem version.

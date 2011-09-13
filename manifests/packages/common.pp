@@ -18,7 +18,7 @@
 #
 class rvm::packages::common {
   Exec {
-    path => '/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/rvm/bin',
+    path => '/bin:/sbin:/usr/bin:/usr/sbin:/usr/lib/rvm/bin',
   }
   
   #exec { 'download-rvm-install':
