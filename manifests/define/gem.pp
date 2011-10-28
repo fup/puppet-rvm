@@ -27,7 +27,8 @@ define rvm::define::gem(
   $ensure = 'present',
   $ruby_version,
   $gem_version = '',
-  $source = ''
+  $source = '',
+  $gemset = ''
 ) {  
   ## Set sensible defaults for Exec resource
   Exec {
@@ -37,28 +38,34 @@ define rvm::define::gem(
   # Local Parameters
   $rvm_path = '/usr/lib/rvm'
   $rvm_ruby = "${rvm_path}/rubies"
+
+  if $gemset == '' {
+  	$ruby = "${ruby_version}"
+  } else {
+  	$ruby = "${ruby_version}@${gemset}"
+  }
   
   # Setup proper install/uninstall commands based on gem version.
   if $gem_version == '' {
     if $source != '' {
       $gem = {
-        'install'   => "rvm ${ruby_version} gem install ${name} --no-ri --no-rdoc ${source}",
-        'uninstall' => "rvm ${ruby_version} gem uninstall ${name}",
-        'lookup'    => "rvm gem list | grep ${name}",
+        'install'   => "rvm ${ruby} gem install ${name} --no-ri --no-rdoc ${source}",
+        'uninstall' => "rvm ${ruby} gem uninstall ${name}",
+        'lookup'    => "rvm ${ruby} gem list | grep ${name}",
       }
     }
     else {
       $gem = {
-        'install'   => "rvm ${ruby_version} gem install ${name} --no-ri --no-rdoc",
-        'uninstall' => "rvm ${ruby_version} gem uninstall ${name}",
-        'lookup'    => "rvm gem list | grep ${name}",
+        'install'   => "rvm ${ruby} gem install ${name} --no-ri --no-rdoc",
+        'uninstall' => "rvm ${ruby} gem uninstall ${name}",
+        'lookup'    => "rvm ${ruby} gem list | grep ${name}",
       }
     }
   } else {
     $gem = {
-      'install'   => "rvm ${ruby_version} gem install ${name} -v ${gem_version} --no-ri --no-rdoc",
-      'uninstall' => "rvm ${ruby_version} gem uninstall ${name} -v ${gem_version}",
-      'lookup'    => "rvm gem list | grep ${name} | grep ${gem_version}",
+      'install'   => "rvm ${ruby} gem install ${name} -v ${gem_version} --no-ri --no-rdoc",
+      'uninstall' => "rvm ${ruby} gem uninstall ${name} -v ${gem_version}",
+      'lookup'    => "rvm ${ruby} gem list | grep ${name} | grep ${gem_version}",
     }
   }
   
