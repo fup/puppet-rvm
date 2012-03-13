@@ -20,7 +20,7 @@
 #   rvm::define::version { 'ruby-1.8.7':
 #     ensure => 'present',
 #     system => 'true',
-#     ssl    => 'true'
+#     ssl    => 'true',
 #   }
 #
 #  Install Ruby Enterprise
