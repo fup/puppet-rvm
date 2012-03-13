@@ -36,7 +36,8 @@
 #
 define rvm::define::version (
   $ensure = 'present',
-  $system = 'false'
+  $system = 'false',
+  $ssl    = 'false'
 ) {
   include rvm
 
