@@ -48,12 +48,12 @@ define rvm::define::version (
 
   if $ssl == 'true' {
       exec { "install-pkg-openssl":
-        command => "rvm pkg openssl",
+        command => "rvm pkg install openssl",
         creates => "/usr/local/rvm/usr/ssl",
         timeout => '0',
         require => Class['rvm'],
       }
-      $install = "rvm install ${name} -C --with-openssl-dir=/usr/local/rvm/usr"
+      $install = "rvm install ${name} -C --with-openssl-dir=/usr/lib/rvm/usr"
   } else {
       $install = "rvm install ${name}"
   }
