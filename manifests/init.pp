@@ -11,7 +11,7 @@
 #
 # Actions:
 #   Installs RVM, manages active versions, and can install gems for specific
-#   RVM instances.   
+#   RVM instances.
 #
 # Requires:
 #   - Development Libraries: RVM manually compiles ruby, and requires dev libraries to bootstrap
@@ -25,7 +25,7 @@
 #     ensure => 'present',
 #     system => 'true',
 #   }
-#   
+#
 #  Install Ruby Enterprise
 #
 #   rvm::define::version { 'ree':
@@ -42,15 +42,15 @@
 #
 class rvm {
   include stdlib
-  
+
   anchor { 'rvm::begin': }
   anchor { 'rvm::end': }
-  
+
   class { 'rvm::packages':
     require => Anchor['rvm::begin'],
     before  => Class['rvm::config'],
   }
-  class { 'rvm::config': 
+  class { 'rvm::config':
     before => Anchor['rvm::end'],
   }
 }

@@ -82,8 +82,9 @@ define rvm::define::version (
   # versions from attempting to be system default.
   if ($system == 'true') and ($ensure != 'absent') {
     exec { 'set-default-ruby-rvm':
+      path    => '/bin:/usr/bin',
       command => "rvm --default use ${name}",
-      unless  => "rvm current | grep ${name}",
+      unless  => "rvm list | grep ${name} | grep '*'",
       require => [Class['rvm'], Exec["install-ruby-${name}"]],
     }
   }

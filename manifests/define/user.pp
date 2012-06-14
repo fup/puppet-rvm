@@ -15,7 +15,7 @@
 #
 # Sample Usage:
 #  Install Gem to specific RVM version
-#   
+#
 #   $rvm_users = ['james', 'aziz', 'frank']
 #   rvm::define::user { $rvm_users: }
 #

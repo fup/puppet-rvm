@@ -1,5 +1,5 @@
 # Defintion: rvm::define::gem
-# 
+#
 # Description
 #  This custom definition will install a gem to a specific RVM version if the default
 #  system ruby is not the desired installation with gem or the gem package provider.
@@ -29,22 +29,22 @@ define rvm::define::gem(
   $gem_version = '',
   $source = '',
   $gemset = ''
-) {  
+) {
   ## Set sensible defaults for Exec resource
   Exec {
     path    => '/usr/lib/rvm/bin:/bin:/sbin:/usr/bin:/usr/sbin',
   }
-  
+
   # Local Parameters
   $rvm_path = '/usr/lib/rvm'
   $rvm_ruby = "${rvm_path}/rubies"
 
   if $gemset == '' {
-  	$ruby = "${ruby_version}"
+    $ruby = "${ruby_version}"
   } else {
-  	$ruby = "${ruby_version}@${gemset}"
+    $ruby = "${ruby_version}@${gemset}"
   }
-  
+
   # Setup proper install/uninstall commands based on gem version.
   if $gem_version == '' {
     if $source != '' {
@@ -68,7 +68,7 @@ define rvm::define::gem(
       'lookup'    => "rvm ${ruby} gem list | grep ${name} | grep ${gem_version}",
     }
   }
-  
+
   ## Begin Logic
   if $ensure == 'present' {
     exec { "rvm-gem-install-${name}-${ruby_version}":
@@ -81,6 +81,6 @@ define rvm::define::gem(
       command => $gem['uninstall'],
       onlyif  => $gem['lookup'],
       require => [Class['rvm'], Exec["install-ruby-${ruby_version}"]],
-    }    
+    }
   }
 }

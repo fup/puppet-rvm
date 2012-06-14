@@ -13,7 +13,7 @@
 #   package class based on operating system.
 #
 # Requires:
-#   This module has no requirements.   
+#   This module has no requirements.
 #
 # Sample Usage:
 #   This method should not be called directly.
@@ -21,7 +21,7 @@
 class rvm::packages {
   anchor { 'rvm::packages::begin': }
   anchor { 'rvm::packages::end': }
-  
+
   case $::operatingsystem {
     redhat,oel,centos,fedora: {
       class { 'rvm::packages::redhat':
@@ -30,7 +30,7 @@ class rvm::packages {
       }
     }
   }
-  
+
   class { 'rvm::packages::common':
     before  => Anchor['rvm::packages::end'],
   }
