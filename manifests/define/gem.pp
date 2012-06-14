@@ -74,13 +74,13 @@ define rvm::define::gem(
     exec { "rvm-gem-install-${name}-${ruby_version}":
       command => $gem['install'],
       unless  => $gem['lookup'],
-      require => [Class['rvm'], Exec["install-ruby-${ruby_version}"]],
+      require => [Class['rvm'], Exec["install-${ruby_version}"]],
     }
   } elsif $ensure == 'absent' {
     exec { "rvm-gem-uninstall-${name}-${version}":
       command => $gem['uninstall'],
       onlyif  => $gem['lookup'],
-      require => [Class['rvm'], Exec["install-ruby-${ruby_version}"]],
+      require => [Class['rvm'], Exec["install-${ruby_version}"]],
     }
   }
 }

@@ -63,14 +63,14 @@ define rvm::define::version (
 
   # Install or uninstall RVM Ruby Version
   if $ensure == 'present' {
-    exec { "install-ruby-${name}":
+    exec { "install-${name}":
       command => $install,
       creates => "${rvm_ruby}/${name}",
       timeout => '0',
       require => Class['rvm'],
     }
   } elsif $ensure == 'absent' {
-    exec { "uninstall-ruby-${name}":
+    exec { "uninstall-${name}":
       command => "rvm uninstall ${name}",
       onlyif  => "find ${rvm_ruby}/${name}",
       require => Class['rvm'],
@@ -85,7 +85,7 @@ define rvm::define::version (
       path    => '/bin:/usr/bin',
       command => "rvm --default use ${name}",
       unless  => "rvm list | grep ${name} | grep '*'",
-      require => [Class['rvm'], Exec["install-ruby-${name}"]],
+      require => [Class['rvm'], Exec["install-${name}"]],
     }
   }
 }
