@@ -49,7 +49,7 @@ define rvm::define::version (
   if $ssl == 'true' {
       exec { "install-pkg-openssl":
         command => "rvm pkg install openssl",
-        creates => "/usr/local/rvm/usr/ssl",
+        creates => "/usr/lib/rvm/usr/ssl",
         timeout => '0',
         require => Class['rvm'],
       }
